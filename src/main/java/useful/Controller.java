@@ -29,6 +29,6 @@ public class Controller {
                         throw new IllegalArgumentException("Bad request");
                     }
                     return "Received 200 OK";
-                })).onErrorReturn(e -> "Unknown response");
+                })).doOnError(e -> System.out.println("Error")).onErrorReturn(e -> "Unknown response");
     }
 }

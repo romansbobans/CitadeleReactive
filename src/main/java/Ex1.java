@@ -13,12 +13,11 @@ public class Ex1 {
                 .doOnNext(e -> System.out.println(
                         String.format("Emiting %s on %s", e, Threader.threadName())))
                 .observeOn(Schedulers.computation())
-                .subscribe(e ->
+                .blockingSubscribe(e ->
                         System.out.println(
                                 String.format("Receiving %s on %s", e, Threader.threadName())),
                         e -> { },
                         () -> System.out.println(String.format("Completed on %s", Threader.threadName())));
-        Thread.sleep(100);
 
     }
 }

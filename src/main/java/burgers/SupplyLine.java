@@ -52,8 +52,11 @@ public class SupplyLine {
 
         Observable.zip(kotleteSupply, cropField, tomatoGreenHouse, mcDonalds::process)
                 .observeOn(Threader.scheduler("Cashier"))
-                .subscribe(e -> System.out.println(String.format("Received burger on %s", Threader.threadName())));
+                .subscribe(e -> System.out.println(String.format("Received burger on %s", Threader.threadName())), e -> {});
         Thread.sleep(100000);
+
+        Observable.just(1);
+        Observable.fromCallable(() -> 1);
     }
 
 
